@@ -1,5 +1,6 @@
 <template>
 	<div class="flex items-center gap-4">
+		<!-- Main input that's going to be hidden and save the whole code -->
 		<input
 			id="code"
 			type="number"
@@ -7,7 +8,9 @@
 			ref="registerCode"
 			class="border-2 mx-auto my-6 opacity-0 w-0 h-0"
 			maxlength="6" />
+		<!-- LABEL reason: focus on main input while user click on each box -->
 		<label for="code" class="flex justify-center items-end gap-1.5 my-4 ltr">
+			<!-- Code Boxes -->
 			<codeBox />
 			<codeBox />
 			<codeBox />
