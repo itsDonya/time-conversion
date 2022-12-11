@@ -3,7 +3,7 @@
 		<input
 			id="code"
 			type="number"
-			@input="changeInput($event)"
+			@input="pasteInBoxes($event)"
 			ref="registerCode"
 			class="border-2 mx-auto my-6 opacity-0 w-0 h-0"
 			maxlength="6" />
@@ -24,37 +24,21 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import codeBox from "./CodeBox.vue";
+import useReset from "../hooks/resetCode";
+import usePaste from "../hooks/pasteDigits";
 export default {
 	components: {
 		codeBox,
 	},
 	setup() {
-		const registerCode = ref(null);
-		function changeInput(e) {
-			const codeBoxes = document.querySelectorAll(".code-digit");
-			const code = e.target.value;
-			for (let i in code) {
-				const letter = code[i];
-				if (codeBoxes[i]) {
-					codeBoxes[i].innerText = letter;
-				}
-			}
-		}
-		function resetCode() {
-			registerCode.value.value = "";
-			let codeBoxes = document.querySelectorAll(".code-digit");
-			codeBoxes = Array.prototype.slice.call(codeBoxes);
-			codeBoxes.forEach((box) => {
-				box.innerText = "";
-			});
-			console.log(registerCode.value.value);
-		}
+		const [pasteInBoxes] = usePaste();
+		const [registerCode, resetCode] = useReset();
+
 		return {
-			changeInput,
-			resetCode,
+			pasteInBoxes,
 			registerCode,
+			resetCode,
 		};
 	},
 };
