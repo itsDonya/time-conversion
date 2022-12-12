@@ -6,7 +6,7 @@ export default function useCounter(receivedSecond) {
 	// Calculate second
 	const calculatedSec = computed(() => {
 		// Check if the number has only one digit, put a "0" behind
-		if (second.value < 10) {
+		if (second.value % 60 < 10) {
 			return `0${second.value % 60}`;
 		} else {
 			return second.value % 60;

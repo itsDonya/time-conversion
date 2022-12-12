@@ -1,9 +1,6 @@
 <template>
 	<button
-		@click="
-			resendCode();
-			resetCode();
-		"
+		@click="resendCode"
 		class="px-4 py-2 text-white bg-emerald-500 rounded-lg disabled:bg-opacity-60 disabled:cursor-not-allowed"
 		ref="resendBtn"
 		:disabled="canSendReq">
@@ -16,7 +13,6 @@
 
 <script>
 import useCounter from "../hooks/counter";
-import useReset from "../hooks/resetCode";
 export default {
 	props: {
 		second: {
@@ -32,7 +28,6 @@ export default {
 			calculatedMin,
 			calculatedSec,
 		] = useCounter(props.second);
-		const [resetCode] = useReset();
 		return {
 			second,
 			resendBtn,
@@ -40,7 +35,6 @@ export default {
 			canSendReq,
 			calculatedSec,
 			calculatedMin,
-			resetCode,
 		};
 	},
 };
