@@ -6,9 +6,11 @@
 		"
 		class="px-4 py-2 text-white bg-emerald-500 rounded-lg disabled:bg-opacity-60 disabled:cursor-not-allowed"
 		ref="resendBtn"
-		disabled>
+		:disabled="canSendReq">
 		ارسال مجدد کد
-		<span ref="counterEl">{{ calculatedSec }}:{{ calculatedMin }}</span>
+		<span :class="{ hiddenCounter: !canSendReq }"
+			>{{ calculatedSec }}:{{ calculatedMin }}</span
+		>
 	</button>
 </template>
 
@@ -26,7 +28,7 @@ export default {
 			second,
 			resendBtn,
 			resendCode,
-			counterEl,
+			canSendReq,
 			calculatedMin,
 			calculatedSec,
 		] = useCounter(props.second);
@@ -35,7 +37,7 @@ export default {
 			second,
 			resendBtn,
 			resendCode,
-			counterEl,
+			canSendReq,
 			calculatedSec,
 			calculatedMin,
 			resetCode,
@@ -43,3 +45,9 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.hiddenCounter {
+	display: none;
+}
+</style>

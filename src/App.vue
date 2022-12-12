@@ -5,7 +5,7 @@
 			<CodeContainer />
 			<div class="flex items-center justify-around">
 				<button class="text-zinc-500">تغییر شماره همراه</button>
-				<CountDown :second="12" />
+				<CountDown :second="2" />
 			</div>
 		</section>
 	</main>
