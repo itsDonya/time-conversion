@@ -8,7 +8,7 @@
 		ref="resendBtn"
 		disabled>
 		ارسال مجدد کد
-		<span ref="counterEl">{{ minute }}:{{ computeDigits }}</span>
+		<span ref="counterEl">{{ calculatedSec }}:{{ calculatedMin }}</span>
 	</button>
 </template>
 
@@ -22,16 +22,22 @@ export default {
 		},
 	},
 	setup(props) {
-		const [second, minute, resendBtn, resendCode, counterEl, computeDigits] =
-			useCounter(props.second);
-		const [resetCode] = useReset();
-		return {
+		const [
 			second,
-			minute,
 			resendBtn,
 			resendCode,
 			counterEl,
-			computeDigits,
+			calculatedMin,
+			calculatedSec,
+		] = useCounter(props.second);
+		const [resetCode] = useReset();
+		return {
+			second,
+			resendBtn,
+			resendCode,
+			counterEl,
+			calculatedSec,
+			calculatedMin,
 			resetCode,
 		};
 	},

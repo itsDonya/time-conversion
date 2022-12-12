@@ -3,17 +3,22 @@ export default function useCounter(receivedSecond) {
 	const resendBtn = ref(null);
 	const second = ref(receivedSecond);
 	const counterEl = ref(null);
-	let calculatedSec = ref(second.value % 60);
+	// let calculatedSec = ref(second.value % 60);
 
-	// Check if the number has only one digit, put a "0" behind
-	const computeDigits = computed(() => {
-		if (calculatedSec.value < 10) {
-			return `0${calculatedSec.value}`;
+	// Calculate second
+	const calculatedSec = computed(() => {
+		// Check if the number has only one digit, put a "0" behind
+		if (second.value < 10) {
+			return `0${second.value % 60}`;
 		} else {
-			return calculatedSec.value;
+			return second.value % 60;
 		}
 	});
-	let minute = ref(Math.trunc(second.value / 60));
+
+	// Calculate minute
+	const calculatedMin = computed(() => {
+		return Math.trunc(second.value / 60);
+	});
 
 	onMounted(() => {
 		sendCode();
@@ -40,9 +45,6 @@ export default function useCounter(receivedSecond) {
 	}
 
 	watch(second, (val) => {
-		calculatedSec.value = second.value % 60;
-		minute.value = Math.trunc(second.value / 60);
-
 		// Watch if counter reached to zero, then stop counting
 		if (val === 0) {
 			clearInterval(reduceCounter);
@@ -50,5 +52,12 @@ export default function useCounter(receivedSecond) {
 			counterEl.value.classList.add("hidden");
 		}
 	});
-	return [second, minute, resendBtn, resendCode, counterEl, computeDigits];
+	return [
+		second,
+		resendBtn,
+		resendCode,
+		counterEl,
+		calculatedSec,
+		calculatedMin,
+	];
 }
