@@ -1,6 +1,9 @@
 <template>
 	<button
-		@click="resendCode"
+		@click="
+			resendCode();
+			resetCode();
+		"
 		class="px-4 py-2 text-white bg-emerald-500 rounded-lg disabled:bg-opacity-60 disabled:cursor-not-allowed"
 		ref="resendBtn"
 		disabled>
@@ -11,6 +14,7 @@
 
 <script>
 import useCounter from "../hooks/counter";
+import useReset from "../hooks/resetCode";
 export default {
 	props: {
 		second: {
@@ -20,7 +24,7 @@ export default {
 	setup(props) {
 		const [second, minute, resendBtn, resendCode, counterEl, computeDigits] =
 			useCounter(props.second);
-
+		const [resetCode] = useReset();
 		return {
 			second,
 			minute,
@@ -28,6 +32,7 @@ export default {
 			resendCode,
 			counterEl,
 			computeDigits,
+			resetCode,
 		};
 	},
 };

@@ -1,8 +1,7 @@
-import { ref } from "vue";
 export default function useReset() {
-	const registerCode = ref(null);
 	function resetCode() {
-		registerCode.value.value = "";
+		const registerCode = document.getElementById("code");
+		registerCode.value = "";
 
 		// Making all of the boxes empty
 		let codeBoxes = document.querySelectorAll(".code-digit");
@@ -11,5 +10,5 @@ export default function useReset() {
 			box.innerText = "";
 		});
 	}
-	return [registerCode, resetCode];
+	return [resetCode];
 }

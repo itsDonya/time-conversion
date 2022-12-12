@@ -5,7 +5,6 @@
 			id="code"
 			type="number"
 			@input="pasteInBoxes($event)"
-			ref="registerCode"
 			class="border-2 mx-auto my-6 opacity-0 w-0 h-0"
 			maxlength="6" />
 		<!-- LABEL reason: focus on main input while user click on each box -->
@@ -36,11 +35,10 @@ export default {
 	},
 	setup() {
 		const [pasteInBoxes] = usePaste();
-		const [registerCode, resetCode] = useReset();
+		const [resetCode] = useReset();
 
 		return {
 			pasteInBoxes,
-			registerCode,
 			resetCode,
 		};
 	},
