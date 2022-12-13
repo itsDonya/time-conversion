@@ -1,6 +1,6 @@
 <template>
 	<main>
-		<CountDown :second="130" />
+		<CountDown :second="1" />
 	</main>
 </template>
 

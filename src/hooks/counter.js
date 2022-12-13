@@ -39,9 +39,13 @@ export default function useCounter(receivedSecond) {
 		}, 1000);
 	}
 
-	function resendCode() {
+	function resendCode(resendSeconds) {
 		// Re-count the seconds
-		second.value = receivedSecond;
+		if (resendSeconds) {
+			second.value = resendSeconds;
+		} else {
+			second.value = receivedSecond;
+		}
 		sendCode();
 	}
 

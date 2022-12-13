@@ -1,6 +1,6 @@
 <template>
 	<button
-		@click="resendCode"
+		@click="resendCode(3)"
 		class="px-4 py-2 text-white bg-emerald-500 rounded-lg disabled:bg-opacity-60 disabled:cursor-not-allowed"
 		ref="resendBtn"
 		:disabled="canSendReq">
